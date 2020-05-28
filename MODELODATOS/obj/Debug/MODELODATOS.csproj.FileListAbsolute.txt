@@ -1,0 +1,5 @@
+C:\Desarrollo\DesarrolloPrueba\MODELODATOS\bin\Debug\MODELODATOS.dll
+C:\Desarrollo\DesarrolloPrueba\MODELODATOS\bin\Debug\MODELODATOS.pdb
+C:\Desarrollo\DesarrolloPrueba\MODELODATOS\obj\Debug\MODELODATOS.csproj.CoreCompileInputs.cache
+C:\Desarrollo\DesarrolloPrueba\MODELODATOS\obj\Debug\MODELODATOS.dll
+C:\Desarrollo\DesarrolloPrueba\MODELODATOS\obj\Debug\MODELODATOS.pdb
