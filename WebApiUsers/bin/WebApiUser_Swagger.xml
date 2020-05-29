@@ -483,7 +483,7 @@
         </member>
         <member name="T:WebApiUsers.Controllers.AlumnosController">
             <summary>
-            Controlador para gestionar loa Alumnos
+            Controlador para gestionar los Alumnos
             </summary>
         </member>
         <member name="M:WebApiUsers.Controllers.AlumnosController.GetAlumnos">
@@ -509,14 +509,14 @@
             <summary>
             Edita un Alumno segun el Id pasado como parametro y el Alumno
             </summary>       
-            <param name="id"> Id del eAlumno a editar</param> <seealso cref="T:System.Int32"></seealso>
+            <param name="id"> Id del Alumno a editar</param> <seealso cref="T:System.Int32"></seealso>
             <param name="alumnos"> Datos actualizados del Alumno a editar</param>  <seealso cref="T:MODELODATOS.ENTIDADES.Alumnos.Alumnos"></seealso>
             <returns></returns> 
             <response code="401">Unauthorized. No se ha indicado o es incorrecto el Token JWT de acceso.</response>              
             <response code="200">OK. Devuelve el objeto solicitado.</response>        
             <response code="404">NotFound. No se ha encontrado el objeto solicitado.</response>
         </member>
-        <member name="M:WebApiUsers.Controllers.AlumnosController.PostAlumnos(MODELODATOS.ENTIDADES.Alumnos.Alumnos)">
+        <member name="M:WebApiUsers.Controllers.AlumnosController.AddAlumno(MODELODATOS.ENTIDADES.Alumnos.Alumnos)">
             <summary>
             Crea un Alumno
             </summary>       
@@ -531,6 +531,61 @@
             Elimina un Alumno
             </summary>       
             <param name="id"> Id del Alumno a eliminar</param>  
+            <returns></returns> 
+            <response code="401">Unauthorized. No se ha indicado o es incorrecto el Token JWT de acceso.</response>              
+            <response code="200">OK. Devuelve el objeto solicitado.</response>        
+            <response code="404">NotFound. No se ha encontrado el objeto solicitado.</response>
+        </member>
+        <member name="T:WebApiUsers.Controllers.CursosController">
+            <summary>
+            Controlador para gestionar los Cursos
+            </summary>
+        </member>
+        <member name="M:WebApiUsers.Controllers.CursosController.GetCursos">
+            <summary>
+            Devuelve todos los Cursos
+            </summary>     
+            <returns>Lista de Cursos</returns> 
+            <response code="401">Unauthorized. No se ha indicado o es incorrecto el Token JWT de acceso.</response>              
+            <response code="200">OK. Devuelve el objeto solicitado.</response>        
+            <response code="404">NotFound. No se ha encontrado el objeto solicitado.</response>
+        </member>
+        <member name="M:WebApiUsers.Controllers.CursosController.GetCurso(System.Int32)">
+            <summary>
+            Devuelve un Curso segun el Id pasado como parametro 
+            </summary>
+            <param name="id"> Id del Curso a buscar</param> <seealso cref="T:System.Int32"></seealso>
+            <returns>Curso</returns> 
+            <response code="401">Unauthorized. No se ha indicado o es incorrecto el Token JWT de acceso.</response>              
+            <response code="200">OK. Devuelve el objeto solicitado.</response>        
+            <response code="404">NotFound. No se ha encontrado el objeto solicitado.</response>
+        </member>
+        <member name="M:WebApiUsers.Controllers.CursosController.EditCurso(System.Int32,MODELODATOS.ENTIDADES.Cursos.Cursos)">
+            <summary>
+            Edita un Curso segun el Id pasado como parametro y el Curso 
+            </summary>       
+            <param name="id"> Id del Curso a editar</param> <seealso cref="T:System.Int32"></seealso>
+            <param name="curso"> Datos actualizados del Curso a editar</param>  <seealso cref="T:MODELODATOS.ENTIDADES.Cursos.Cursos"></seealso>
+            <returns></returns> 
+            <response code="401">Unauthorized. No se ha indicado o es incorrecto el Token JWT de acceso.</response>              
+            <response code="200">OK. Devuelve el objeto solicitado.</response>        
+            <response code="404">NotFound. No se ha encontrado el objeto solicitado.</response>
+        </member>
+        <member name="M:WebApiUsers.Controllers.CursosController.AddCurso(MODELODATOS.ENTIDADES.Cursos.Cursos)">
+            <summary>
+            Crea un Curso
+            </summary>       
+            <param name="curso"> Datos del Curso a crear</param>  <seealso cref="T:MODELODATOS.ENTIDADES.Cursos.Cursos"></seealso>
+            <returns></returns> 
+            <response code="401">Unauthorized. No se ha indicado o es incorrecto el Token JWT de acceso.</response>              
+            <response code="200">OK. Devuelve el objeto solicitado.</response>        
+            <response code="404">NotFound. No se ha encontrado el objeto solicitado.</response>
+        </member>
+        <member name="M:WebApiUsers.Controllers.CursosController.DeleteCurso(System.Int32)">
+            <summary>
+            Elimina un Curso
+            </summary>       
+            <param name="id"> Id del Curso a eliminar</param>  
             <returns></returns> 
             <response code="401">Unauthorized. No se ha indicado o es incorrecto el Token JWT de acceso.</response>              
             <response code="200">OK. Devuelve el objeto solicitado.</response>        
@@ -553,7 +608,6 @@
             <response code="401">Unauthorized. No se ha indicado o es incorrecto el Token JWT de acceso.</response>              
             <response code="200">OK. Devuelve el objeto solicitado.</response>        
             <response code="404">NotFound. No se ha encontrado el objeto solicitado.</response>
-            
         </member>
     </members>
 </doc>

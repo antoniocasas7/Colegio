@@ -13,8 +13,9 @@ namespace MODELODATOS.ENTIDADES.Profesores
     public class Profesores
     {
         [Key]
+        [Required(ErrorMessage = " El Id es requerido")]
         public int Id { get; set; }
-
+        [Required(ErrorMessage = " El Nombre es requerido")]
         public string Name { get; set; }
 
         public string Apellidos { get; set; }

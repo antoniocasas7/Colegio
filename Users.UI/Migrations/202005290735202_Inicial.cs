@@ -12,7 +12,7 @@ namespace Users.UI.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
+                        Name = c.String(nullable: false),
                         Apellidos = c.String(),
                         IdCurso = c.Int(nullable: false),
                         Cursos_Id = c.Int(),
@@ -26,7 +26,7 @@ namespace Users.UI.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
+                        Name = c.String(nullable: false),
                         Apellidos = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
@@ -36,7 +36,7 @@ namespace Users.UI.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
+                        Name = c.String(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
             

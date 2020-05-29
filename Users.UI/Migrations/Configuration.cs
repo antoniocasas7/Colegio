@@ -1,3 +1,4 @@
+
 namespace Users.UI.Migrations
 {
     using System;
@@ -9,7 +10,7 @@ namespace Users.UI.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(Users.UI.Models.ApplicationDbContext context)

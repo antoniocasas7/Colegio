@@ -13,7 +13,7 @@ namespace Users.UI.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202005281343294_Inicial"; }
+            get { return "202005290735202_Inicial"; }
         }
         
         string IMigrationMetadata.Source

@@ -188,9 +188,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202005281343294_Inicial.cs" />
-    <Compile Include="Migrations\202005281343294_Inicial.Designer.cs">
-      <DependentUpon>202005281343294_Inicial.cs</DependentUpon>
+    <Compile Include="Migrations\202005290735202_Inicial.cs" />
+    <Compile Include="Migrations\202005290735202_Inicial.Designer.cs">
+      <DependentUpon>202005290735202_Inicial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -278,7 +278,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\Entidades\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -300,8 +299,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202005281343294_Inicial.resx">
-      <DependentUpon>202005281343294_Inicial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202005290735202_Inicial.resx">
+      <DependentUpon>202005290735202_Inicial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

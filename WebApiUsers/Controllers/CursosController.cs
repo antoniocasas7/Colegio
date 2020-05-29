@@ -9,82 +9,81 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
-using MODELODATOS.ENTIDADES.Alumnos;
+using MODELODATOS.ENTIDADES.Cursos;
 using WebApiUsers.Models;
 
 namespace WebApiUsers.Controllers
 {
     /// <summary>
-    /// Controlador para gestionar los Alumnos
+    /// Controlador para gestionar los Cursos
     /// </summary>
     [Authorize]
-    [RoutePrefix("api/Alumnos")]
-    public class AlumnosController : ApiController
+    [RoutePrefix("api/Cursos")]
+    public class CursosController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         /// <summary>
-        /// Devuelve todos los Alumnos
+        /// Devuelve todos los Cursos
         /// </summary>     
-        /// <returns>Lista de Alumnos</returns> 
+        /// <returns>Lista de Cursos</returns> 
         /// <response code="401">Unauthorized. No se ha indicado o es incorrecto el Token JWT de acceso.</response>              
         /// <response code="200">OK. Devuelve el objeto solicitado.</response>        
         /// <response code="404">NotFound. No se ha encontrado el objeto solicitado.</response>
-        [Route("GetAlumnos")]
-        [ResponseType(typeof(IQueryable<Alumnos>))]
+        [Route("GetCursos")]
+        [ResponseType(typeof(IQueryable<Cursos>))]
         [HttpGet]
-        public IQueryable<Alumnos> GetAlumnos()
+        public IQueryable<Cursos> GetCursos()
         {
-            return db.Alumnos;
+            return db.Cursos;
         }
 
         /// <summary>
-        /// Devuelve un Alumno segun el Id pasado como parametro 
+        /// Devuelve un Curso segun el Id pasado como parametro 
         /// </summary>
-        /// <param name="id"> Id del Alumno a buscar</param> <seealso cref="int"></seealso>
-        /// <returns>Empleo bus</returns> 
+        /// <param name="id"> Id del Curso a buscar</param> <seealso cref="int"></seealso>
+        /// <returns>Curso</returns> 
         /// <response code="401">Unauthorized. No se ha indicado o es incorrecto el Token JWT de acceso.</response>              
         /// <response code="200">OK. Devuelve el objeto solicitado.</response>        
         /// <response code="404">NotFound. No se ha encontrado el objeto solicitado.</response>
         [HttpGet]
-        [Route("GetAlumno")]
-        [ResponseType(typeof(Alumnos))]
-        public async Task<IHttpActionResult> GetAlumno([FromUri] int id)
+        [Route("GetCurso")]
+        [ResponseType(typeof(Cursos))]
+        public async Task<IHttpActionResult> GetCurso([FromUri] int id)
         {
-            Alumnos alumnos = await db.Alumnos.FindAsync(id);
-            if (alumnos == null)
+            Cursos cursos = await db.Cursos.FindAsync(id);
+            if (cursos == null)
             {
                 return NotFound();
             }
 
-            return Ok(alumnos);
+            return Ok(cursos);
         }
 
-
         /// <summary>
-        /// Edita un Alumno segun el Id pasado como parametro y el Alumno
+        /// Edita un Curso segun el Id pasado como parametro y el Curso 
         /// </summary>       
-        /// <param name="id"> Id del Alumno a editar</param> <seealso cref="int"></seealso>
-        /// <param name="alumnos"> Datos actualizados del Alumno a editar</param>  <seealso cref="Alumnos"></seealso>
+        /// <param name="id"> Id del Curso a editar</param> <seealso cref="int"></seealso>
+        /// <param name="curso"> Datos actualizados del Curso a editar</param>  <seealso cref="Cursos"></seealso>
         /// <returns></returns> 
         /// <response code="401">Unauthorized. No se ha indicado o es incorrecto el Token JWT de acceso.</response>              
         /// <response code="200">OK. Devuelve el objeto solicitado.</response>        
         /// <response code="404">NotFound. No se ha encontrado el objeto solicitado.</response>
-        [Route("EditAlumno")]
+        [Route("EditCurso")]
         [ResponseType(typeof(IHttpActionResult))]
-        public async Task<IHttpActionResult> EditAlumno([FromUri] int id, [FromBody]Alumnos alumnos)
+        public async Task<IHttpActionResult> EditCurso([FromUri] int id, [FromBody] Cursos curso)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != alumnos.Id)
+            if (id != curso.Id)
             {
                 return BadRequest();
             }
 
-            db.Entry(alumnos).State = EntityState.Modified;
+            db.Entry(curso).State = EntityState.Modified;
 
             try
             {
@@ -92,7 +91,7 @@ namespace WebApiUsers.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AlumnosExists(id))
+                if (!CursosExists(id))
                 {
                     return NotFound();
                 }
@@ -105,55 +104,53 @@ namespace WebApiUsers.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-
         /// <summary>
-        /// Crea un Alumno
+        /// Crea un Curso
         /// </summary>       
-        /// <param name="alumno"> Datos del Alumno a crear</param>  <seealso cref="Alumnos"></seealso>
+        /// <param name="curso"> Datos del Curso a crear</param>  <seealso cref="Cursos"></seealso>
         /// <returns></returns> 
         /// <response code="401">Unauthorized. No se ha indicado o es incorrecto el Token JWT de acceso.</response>              
         /// <response code="200">OK. Devuelve el objeto solicitado.</response>        
         /// <response code="404">NotFound. No se ha encontrado el objeto solicitado.</response>
         [HttpPost]
-        [Route("AddAlumno")]
-        [ResponseType(typeof(Alumnos))]
-        public async Task<IHttpActionResult> AddAlumno([FromBody] Alumnos alumnos)
+        [Route("AddCurso")]
+        [ResponseType(typeof(Cursos))]
+        public async Task<IHttpActionResult> AddCurso(Cursos curso)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Alumnos.Add(alumnos);
+            db.Cursos.Add(curso);
             await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = alumnos.Id }, alumnos);
+            return CreatedAtRoute("DefaultApi", new { id = curso.Id }, curso);
         }
 
-
         /// <summary>
-        /// Elimina un Alumno
+        /// Elimina un Curso
         /// </summary>       
-        /// <param name="id"> Id del Alumno a eliminar</param>  
+        /// <param name="id"> Id del Curso a eliminar</param>  
         /// <returns></returns> 
         /// <response code="401">Unauthorized. No se ha indicado o es incorrecto el Token JWT de acceso.</response>              
         /// <response code="200">OK. Devuelve el objeto solicitado.</response>        
         /// <response code="404">NotFound. No se ha encontrado el objeto solicitado.</response>
         [HttpDelete]
-        [Route("DeleteAlumno")]
-        [ResponseType(typeof(Alumnos))]
-        public async Task<IHttpActionResult> DeleteAlumnos([FromUri] int id)
+        [Route("DeleteCurso")] 
+        [ResponseType(typeof(Cursos))]
+        public async Task<IHttpActionResult> DeleteCurso(int id)
         {
-            Alumnos alumnos = await db.Alumnos.FindAsync(id);
-            if (alumnos == null)
+            Cursos cursos = await db.Cursos.FindAsync(id);
+            if (cursos == null)
             {
                 return NotFound();
             }
 
-            db.Alumnos.Remove(alumnos);
+            db.Cursos.Remove(cursos);
             await db.SaveChangesAsync();
 
-            return Ok(alumnos);
+            return Ok(cursos);
         }
 
         protected override void Dispose(bool disposing)
@@ -165,9 +162,9 @@ namespace WebApiUsers.Controllers
             base.Dispose(disposing);
         }
 
-        private bool AlumnosExists(int id)
+        private bool CursosExists(int id)
         {
-            return db.Alumnos.Count(e => e.Id == id) > 0;
+            return db.Cursos.Count(e => e.Id == id) > 0;
         }
     }
 }

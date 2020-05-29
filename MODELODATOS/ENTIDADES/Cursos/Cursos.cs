@@ -12,8 +12,10 @@ namespace MODELODATOS.ENTIDADES.Cursos
     public class Cursos
     {
         [Key]
+        [Required(ErrorMessage = " El Id es requerido")]
         public int Id { get; set; }
 
+        [Required(ErrorMessage = " El Nombre es requerido")]
         public string Name { get; set; }
 
         public virtual ICollection<Alumnos.Alumnos> Alumnos { get; set; }

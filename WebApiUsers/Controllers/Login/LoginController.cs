@@ -29,7 +29,7 @@ namespace WebApiUsers.Controllers.Login
     public class LoginController : ApiController
     {
         ApplicationDbContext db = new ApplicationDbContext();
-        // POST: api/Login
+
 
         /// <summary>
         /// Obtiene el Token de acceso a la web api
@@ -42,9 +42,6 @@ namespace WebApiUsers.Controllers.Login
         /// <response code="401">Unauthorized. No se ha indicado o es incorrecto el Token JWT de acceso.</response>              
         /// <response code="200">OK. Devuelve el objeto solicitado.</response>        
         /// <response code="404">NotFound. No se ha encontrado el objeto solicitado.</response>
-        /// 
-
-
         [HttpPost]
         [AllowAnonymous]
         [Route("Login")]
@@ -88,13 +85,60 @@ namespace WebApiUsers.Controllers.Login
             }             
             // Supondremos que el usuario NO existe en la Base de Datos.
             // Retornamos NULL.
-            //return null;
             else
                 return null;
         }
 
 
-        public static string HashPassword(string password)
+        // GENERAMOS EL TOKEN CON LA INFORMACIÓN DEL USUARIO
+        private string GenerarTokenJWT(UsuarioInfo usuarioInfo)
+        {
+            // RECUPERAMOS LAS VARIABLES DE CONFIGURACIÓN
+            var _ClaveSecreta = ConfigurationManager.AppSettings["JWT_SECRET_KEY"];
+            var _Issuer = ConfigurationManager.AppSettings["JWT_ISSUER_TOKEN"];
+            var _Audience = ConfigurationManager.AppSettings["JWT_AUDIENCE_TOKEN"];
+            if (!Int32.TryParse(ConfigurationManager.AppSettings["JWT_EXPIRE_MINUTES"], out int _Expires))
+                _Expires = 24;
+
+            // CREAMOS EL HEADER //
+            var _symmetricSecurityKey = new SymmetricSecurityKey(
+                    Encoding.UTF8.GetBytes(_ClaveSecreta));
+            var _signingCredentials = new SigningCredentials(
+                    _symmetricSecurityKey, SecurityAlgorithms.HmacSha256
+                );
+            var _Header = new JwtHeader(_signingCredentials);
+
+            // CREAMOS LOS CLAIMS //
+            var _Claims = new[] {
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim(JwtRegisteredClaimNames.NameId, usuarioInfo.Id.ToString()),
+                new Claim("nombre", usuarioInfo.Nombre),
+                //new Claim("apellidos", usuarioInfo.Apellidos),
+                //new Claim(JwtRegisteredClaimNames.Email, usuarioInfo.Email),
+                //new Claim(ClaimTypes.Role, usuarioInfo.Rol)
+            };
+          // CREAMOS EL PAYLOAD //
+            var _Payload = new JwtPayload(
+                    issuer: _Issuer,
+                    audience: _Audience,
+                    claims: _Claims,
+                    notBefore: DateTime.UtcNow,
+                    // Exipra a la 24 horas.
+                    expires: DateTime.UtcNow.AddHours(_Expires)
+                );
+
+            // GENERAMOS EL TOKEN //
+            var _Token = new JwtSecurityToken(
+                    _Header,
+                    _Payload
+                );
+            return new JwtSecurityTokenHandler().WriteToken(_Token);
+        }
+
+
+        #region MetodosPrivados
+
+        private static string HashPassword(string password)
         {
             byte[] salt;
             byte[] buffer2;
@@ -113,7 +157,7 @@ namespace WebApiUsers.Controllers.Login
             return Convert.ToBase64String(dst);
         }
 
-        public static bool VerifyHashedPassword(string hashedPassword, string password)
+        private static bool VerifyHashedPassword(string hashedPassword, string password)
         {
             byte[] buffer4;
             if (hashedPassword == null)
@@ -145,52 +189,6 @@ namespace WebApiUsers.Controllers.Login
             return StructuralComparisons.StructuralEqualityComparer.Equals(a1, a2);
         }
 
-        // GENERAMOS EL TOKEN CON LA INFORMACIÓN DEL USUARIO
-        private string GenerarTokenJWT(UsuarioInfo usuarioInfo)
-        {
-            // RECUPERAMOS LAS VARIABLES DE CONFIGURACIÓN
-            var _ClaveSecreta = ConfigurationManager.AppSettings["JWT_SECRET_KEY"];
-            var _Issuer = ConfigurationManager.AppSettings["JWT_ISSUER_TOKEN"];
-            var _Audience = ConfigurationManager.AppSettings["JWT_AUDIENCE_TOKEN"];
-            if (!Int32.TryParse(ConfigurationManager.AppSettings["JWT_EXPIRE_MINUTES"], out int _Expires))
-                _Expires = 24;
-
-
-            // CREAMOS EL HEADER //
-            var _symmetricSecurityKey = new SymmetricSecurityKey(
-                    Encoding.UTF8.GetBytes(_ClaveSecreta));
-            var _signingCredentials = new SigningCredentials(
-                    _symmetricSecurityKey, SecurityAlgorithms.HmacSha256
-                );
-            var _Header = new JwtHeader(_signingCredentials);
-
-            // CREAMOS LOS CLAIMS //
-            var _Claims = new[] {
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new Claim(JwtRegisteredClaimNames.NameId, usuarioInfo.Id.ToString()),
-                new Claim("nombre", usuarioInfo.Nombre),
-                //new Claim("apellidos", usuarioInfo.Apellidos),
-                //new Claim(JwtRegisteredClaimNames.Email, usuarioInfo.Email),
-                //new Claim(ClaimTypes.Role, usuarioInfo.Rol)
-            };
-
-            // CREAMOS EL PAYLOAD //
-            var _Payload = new JwtPayload(
-                    issuer: _Issuer,
-                    audience: _Audience,
-                    claims: _Claims,
-                    notBefore: DateTime.UtcNow,
-                    // Exipra a la 24 horas.
-                    expires: DateTime.UtcNow.AddHours(_Expires)
-                );
-
-            // GENERAMOS EL TOKEN //
-            var _Token = new JwtSecurityToken(
-                    _Header,
-                    _Payload
-                );
-
-            return new JwtSecurityTokenHandler().WriteToken(_Token);
-        }
+        #endregion
     }
 }

@@ -44,9 +44,7 @@ namespace Users.UI.Controllers
             return View();
         }
 
-        // POST: Cursos/Create
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Cursos/Create     
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "Id,Name")] Cursos cursos)
@@ -76,9 +74,7 @@ namespace Users.UI.Controllers
             return View(cursos);
         }
 
-        // POST: Cursos/Edit/5
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Cursos/Edit/5   
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "Id,Name")] Cursos cursos)

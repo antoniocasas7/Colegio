@@ -3,3 +3,9 @@ C:\Desarrollo\DesarrolloPrueba\MODELODATOS\bin\Debug\MODELODATOS.pdb
 C:\Desarrollo\DesarrolloPrueba\MODELODATOS\obj\Debug\MODELODATOS.csproj.CoreCompileInputs.cache
 C:\Desarrollo\DesarrolloPrueba\MODELODATOS\obj\Debug\MODELODATOS.dll
 C:\Desarrollo\DesarrolloPrueba\MODELODATOS\obj\Debug\MODELODATOS.pdb
+C:\Desarrollo\ColegioPruebaAlly\MODELODATOS\bin\Debug\MODELODATOS.dll
+C:\Desarrollo\ColegioPruebaAlly\MODELODATOS\bin\Debug\MODELODATOS.pdb
+C:\Desarrollo\ColegioPruebaAlly\MODELODATOS\obj\Debug\MODELODATOS.csprojAssemblyReference.cache
+C:\Desarrollo\ColegioPruebaAlly\MODELODATOS\obj\Debug\MODELODATOS.csproj.CoreCompileInputs.cache
+C:\Desarrollo\ColegioPruebaAlly\MODELODATOS\obj\Debug\MODELODATOS.dll
+C:\Desarrollo\ColegioPruebaAlly\MODELODATOS\obj\Debug\MODELODATOS.pdb
