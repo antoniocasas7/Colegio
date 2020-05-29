@@ -183,7 +183,6 @@ C:\Desarrollo\DesarrolloPrueba\WebApiUsers\obj\Debug\WebApiUsers.csproj.CoreComp
 C:\Desarrollo\DesarrolloPrueba\WebApiUsers\obj\Debug\WebApiUsers.csproj.CopyComplete
 C:\Desarrollo\DesarrolloPrueba\WebApiUsers\obj\Debug\WebApiUsers.dll
 C:\Desarrollo\DesarrolloPrueba\WebApiUsers\obj\Debug\WebApiUsers.pdb
-C:\Desarrollo\ColegioPruebaAlly\WebApiUsers\bin\EntityFramework.dll
 C:\Desarrollo\ColegioPruebaAlly\WebApiUsers\bin\WebApiUsers.dll.config
 C:\Desarrollo\ColegioPruebaAlly\WebApiUsers\bin\WebApiUser_Swagger.xml
 C:\Desarrollo\ColegioPruebaAlly\WebApiUsers\bin\WebApiUsers.dll
@@ -243,6 +242,7 @@ C:\Desarrollo\ColegioPruebaAlly\WebApiUsers\bin\Autofac.Integration.Mvc.dll
 C:\Desarrollo\ColegioPruebaAlly\WebApiUsers\bin\Autofac.Integration.Owin.dll
 C:\Desarrollo\ColegioPruebaAlly\WebApiUsers\bin\Autofac.Integration.WebApi.dll
 C:\Desarrollo\ColegioPruebaAlly\WebApiUsers\bin\Castle.Core.dll
+C:\Desarrollo\ColegioPruebaAlly\WebApiUsers\bin\EntityFramework.dll
 C:\Desarrollo\ColegioPruebaAlly\WebApiUsers\bin\EntityFramework.SqlServer.dll
 C:\Desarrollo\ColegioPruebaAlly\WebApiUsers\bin\Microsoft.AspNet.Identity.Core.dll
 C:\Desarrollo\ColegioPruebaAlly\WebApiUsers\bin\Microsoft.AspNet.Identity.EntityFramework.dll
